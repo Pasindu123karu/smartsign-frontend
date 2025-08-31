@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Child-friendly Sign Language Learning App Design System */
+
+@layer base {
+  :root {
+    /* Background & Layout */
+    --background: 210 100% 97%;
+    --foreground: 215 25% 27%;
+
+    /* Cards */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    /* Brand Colors - Ultra Vibrant and Fun for Kids */
+    --primary: 210 100% 55%;        /* Bright Sky Blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 100% 85%; /* Light Sky Blue */
+    --primary-glow: 210 100% 70%;   /* Glowing Blue */
+    
+    --secondary: 30 100% 60%;       /* Bright Sunny Orange */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 30 100% 80%;
+    --secondary-glow: 30 100% 70%;
+
+    --success: 135 70% 55%;        /* Bright Lime Green */
+    --success-foreground: 0 0% 100%;
+    --success-light: 135 70% 80%;
+    --success-glow: 135 70% 70%;
+
+    --accent: 300 85% 60%;         /* Bright Magenta */
+    --accent-foreground: 0 0% 100%;
+    --accent-light: 300 85% 85%;
+    --accent-glow: 300 85% 75%;
+
+    /* Additional Fun Colors */
+    --coral: 15 90% 65%;           /* Bright Coral */
+    --coral-foreground: 0 0% 100%;
+    --coral-light: 15 90% 85%;
+
+    --yellow: 50 100% 60%;         /* Bright Sunshine Yellow */
+    --yellow-foreground: 0 0% 20%;
+    --yellow-light: 50 100% 85%;
+
+    --pink: 330 80% 70%;           /* Bright Pink */
+    --pink-foreground: 0 0% 100%;
+    --pink-light: 330 80% 90%;
+
+    /* Neutral Colors */
+    --muted: 210 40% 95%;
+    --muted-foreground: 215 15% 50%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 88%;
+    --input: 210 30% 88%;
+    --ring: 220 100% 60%;
+
+    --radius: 2rem; /* Extra rounded for child-friendly look */
+
+    /* Magical Colorful Gradients for Kids */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 55%) 0%, hsl(240 100% 65%) 30%, hsl(270 100% 70%) 70%, hsl(210 100% 85%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(30 100% 60%) 0%, hsl(60 100% 65%) 30%, hsl(45 100% 70%) 70%, hsl(30 100% 80%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(135 70% 55%) 0%, hsl(165 70% 60%) 30%, hsl(150 70% 65%) 70%, hsl(135 70% 80%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(300 85% 60%) 0%, hsl(330 85% 65%) 30%, hsl(315 85% 70%) 70%, hsl(300 85% 85%) 100%);
+    --gradient-coral: linear-gradient(135deg, hsl(15 90% 65%) 0%, hsl(45 90% 70%) 50%, hsl(15 90% 85%) 100%);
+    --gradient-pink: linear-gradient(135deg, hsl(330 80% 70%) 0%, hsl(360 80% 75%) 50%, hsl(330 80% 90%) 100%);
+    --gradient-rainbow: linear-gradient(135deg, hsl(0 100% 70%) 0%, hsl(60 100% 70%) 16%, hsl(120 100% 70%) 33%, hsl(180 100% 70%) 50%, hsl(240 100% 70%) 66%, hsl(300 100% 70%) 83%, hsl(360 100% 70%) 100%);
+    --gradient-background: linear-gradient(180deg, hsl(210 100% 98%) 0%, hsl(240 90% 96%) 50%, hsl(270 80% 94%) 100%);
+
+    /* Magical Colorful Shadows */
+    --shadow-soft: 0 10px 40px -12px hsl(210 100% 55% / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(210 100% 55% / 0.2), 0 4px 16px -4px hsl(300 85% 60% / 0.1);
+    --shadow-float: 0 20px 60px -12px hsl(210 100% 55% / 0.4), 0 8px 32px -8px hsl(300 85% 60% / 0.2);
+    --shadow-glow: 0 0 40px hsl(210 100% 70% / 0.5);
+    --shadow-rainbow: 0 8px 32px -8px hsl(0 100% 70% / 0.1), 0 4px 16px -4px hsl(120 100% 70% / 0.1), 0 2px 8px -2px hsl(240 100% 70% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bounce-gentle: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
