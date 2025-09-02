@@ -5,25 +5,34 @@ import * as knnClassifier from "@tensorflow-models/knn-classifier";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
-const numbers = Array.from({ length: 10 }, (_, i) => i.toString());
-const practiceKeys = [...letters, ...numbers];
+const letters = Array.from({ length: 26 }, (_, i) =>
+  String.fromCharCode(65 + i)
+); // A-Z
+const numbers = Array.from({ length: 10 }, (_, i) => i.toString()); // 0-9
+const practiceKeys = [...letters, ...numbers]; // A-Z + 0-9
 
 const classifier = knnClassifier.create();
 let model: handpose.HandPose | null = null;
+
+// floating sparkles ✨ 🌟 ⭐ 💫 🎀 🎈 🌈
+const sparkles = ["✨", "🌟", "⭐", "💫", "🎀", "🎈", "🌈"];
 
 const HandRecognition: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [modelLoaded, setModelLoaded] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(Math.floor(Math.random() * practiceKeys.length));
+  const [currentIndex, setCurrentIndex] = useState(
+    Math.floor(Math.random() * practiceKeys.length)
+  );
   const [detectedKey, setDetectedKey] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [flashColor, setFlashColor] = useState<string | null>(null);
 
   const targetKey = practiceKeys[currentIndex];
 
+  // =====================
+  // Load saved KNN dataset
+  // =====================
   const loadKNNDataset = () => {
     const dataset = localStorage.getItem("knnDataset");
     if (dataset) {
@@ -37,6 +46,9 @@ const HandRecognition: React.FC = () => {
     }
   };
 
+  // =====================
+  // Setup model and camera
+  // =====================
   const setupModel = async () => {
     try {
       model = await handpose.load();
@@ -54,7 +66,7 @@ const HandRecognition: React.FC = () => {
     const video = videoRef.current;
     if (!video) return;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       video.srcObject = stream;
       await new Promise((resolve) => {
         video.onloadedmetadata = () => {
@@ -68,6 +80,9 @@ const HandRecognition: React.FC = () => {
     }
   };
 
+  // =====================
+  // Capture hand landmarks
+  // =====================
   const captureHandLandmarks = async () => {
     const video = videoRef.current;
     if (!model || !video) return null;
@@ -79,6 +94,9 @@ const HandRecognition: React.FC = () => {
     return null;
   };
 
+  // =====================
+  // Add training example
+  // =====================
   const addTrainingExample = async (label: string) => {
     const result = await captureHandLandmarks();
     if (result) {
@@ -88,7 +106,10 @@ const HandRecognition: React.FC = () => {
       const dataset = classifier.getClassifierDataset();
       const datasetObj: any = {};
       Object.keys(dataset).forEach((key) => {
-        datasetObj[key] = { data: Array.from(dataset[key].dataSync()), shape: dataset[key].shape };
+        datasetObj[key] = {
+          data: Array.from(dataset[key].dataSync()),
+          shape: dataset[key].shape,
+        };
       });
       localStorage.setItem("knnDataset", JSON.stringify(datasetObj));
     } else {
@@ -96,6 +117,9 @@ const HandRecognition: React.FC = () => {
     }
   };
 
+  // =====================
+  // Predict current key
+  // =====================
   const predictKey = async () => {
     if (!modelLoaded || classifier.getNumClasses() === 0) return;
     setIsAnalyzing(true);
@@ -105,20 +129,17 @@ const HandRecognition: React.FC = () => {
       setDetectedKey(prediction.label);
 
       if (prediction.label === targetKey) {
-        setFlashColor("rgba(0,255,0,0.2)");
-        setTimeout(() => setFlashColor(null), 500);
         toast.success(`🎉 Great job! You signed '${targetKey}'!`);
         setTimeout(() => {
+          // Pick a new random key different from current
           let randomIndex;
           do {
             randomIndex = Math.floor(Math.random() * practiceKeys.length);
           } while (randomIndex === currentIndex);
           setCurrentIndex(randomIndex);
           setDetectedKey(null);
-        }, 1000);
+        }, 2000);
       } else {
-        setFlashColor("rgba(255,0,0,0.2)");
-        setTimeout(() => setFlashColor(null), 500);
         toast.error(`😅 That was '${prediction.label}', try again!`);
       }
     } else {
@@ -127,6 +148,9 @@ const HandRecognition: React.FC = () => {
     setIsAnalyzing(false);
   };
 
+  // =====================
+  // Draw hand landmarks
+  // =====================
   const drawLoop = async () => {
     const canvas = canvasRef.current;
     const video = videoRef.current;
@@ -143,8 +167,8 @@ const HandRecognition: React.FC = () => {
       predictions.forEach((hand) => {
         const xs = hand.landmarks.map((l) => l[0]);
         const ys = hand.landmarks.map((l) => l[1]);
-        ctx.strokeStyle = "#00ff99";
-        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#15ff00ff";
+        ctx.lineWidth = 5;
         ctx.strokeRect(
           Math.min(...xs),
           Math.min(...ys),
@@ -152,9 +176,9 @@ const HandRecognition: React.FC = () => {
           Math.max(...ys) - Math.min(...ys)
         );
         hand.landmarks.forEach(([x, y]) => {
-          ctx.fillStyle = "#ff4444";
+          ctx.fillStyle = "red";
           ctx.beginPath();
-          ctx.arc(x, y, 4, 0, 2 * Math.PI);
+          ctx.arc(x, y, 6, 0, 2 * Math.PI);
           ctx.fill();
         });
       });
@@ -169,37 +193,64 @@ const HandRecognition: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-start w-full min-h-screen p-4 text-gray-200 bg-[#1f1f2e]">
-      {/* Flash overlay */}
-      {flashColor && <div className="absolute inset-0 z-50" style={{ backgroundColor: flashColor }} />}
+    <div className="relative min-h-screen bg-gradient-to-b from-pink-100 via-yellow-100 to-blue-100 flex flex-col items-center p-8 text-gray-800">
+      {/* floating sparkles */}
+      {Array.from({ length: 14 }).map((_, i) => {
+        const sparkle = sparkles[i % sparkles.length];
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        const delay = `${Math.random() * 3}s`;
+        return (
+          <div
+            key={i}
+            className="absolute animate-float text-xl opacity-70"
+            style={{ left: `${left}%`, top: `${top}%`, animationDelay: delay }}
+          >
+            {sparkle}
+          </div>
+        );
+      })}
 
-      <h1 className="text-3xl sm:text-4xl font-extrabold text-indigo-400 mb-3 text-center">
+      <h1 className="text-5xl font-extrabold text-purple-700 mb-6 drop-shadow-lg">
         🖐️ Smart Sign Trainer
       </h1>
 
       {/* Target key bubble */}
-      <div className="w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center rounded-full bg-indigo-600 text-white text-4xl sm:text-5xl font-bold shadow-lg">
+      <div className="w-28 h-28 flex items-center justify-center rounded-full bg-gradient-to-tr from-pink-500 via-yellow-400 to-green-400 text-white text-5xl font-bold shadow-lg">
         {targetKey}
       </div>
-      <p className="text-center text-lg sm:text-xl font-semibold mt-2">
-        Try making <span className="font-extrabold text-indigo-300">{targetKey}</span> with your hand!
+      <p className="text-lg font-semibold text-center mt-4">
+        Try making{" "}
+        <span className="font-extrabold text-purple-600">{targetKey}</span> with
+        your hand!
       </p>
 
       {/* Video + Canvas */}
-      <div className="relative mt-4 w-[90%] sm:w-[400px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-2 border-indigo-500">
-        <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
-        <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none" />
+      <div className="relative shadow-2xl rounded-2xl overflow-hidden border-4 border-purple-400 mt-6">
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          muted
+          className="w-[400px] h-[300px] rounded-2xl"
+        />
+        <canvas
+          ref={canvasRef}
+          className="absolute top-0 left-0 w-[400px] h-[300px] pointer-events-none"
+        />
       </div>
 
       {/* Training buttons grid */}
-      <div className="w-full mt-4 max-w-[700px] mx-auto">
-        <h2 className="text-lg sm:text-xl font-bold text-indigo-400 mb-2 text-center">Train Letters & Numbers</h2>
-        <div className="grid grid-cols-5 sm:grid-cols-10 gap-1 sm:gap-2 justify-center">
+      <div className="w-full mt-8">
+        <h2 className="text-xl font-bold text-purple-600 mb-3 text-center">
+          Train Letters & Numbers
+        </h2>
+        <div className="grid grid-cols-10 gap-2 justify-center">
           {practiceKeys.map((key) => (
             <Button
               key={key}
               onClick={() => addTrainingExample(key)}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full text-sm sm:text-base font-bold text-white shadow-md bg-gradient-to-br from-indigo-700 to-purple-600 hover:from-purple-500 hover:to-pink-500 transition-all"
+              className="w-10 h-10 rounded-full text-sm font-bold text-white shadow-lg bg-gradient-to-br from-purple-700 to-indigo-500 hover:from-pink-500 hover:to-yellow-400 transition-all"
             >
               {key}
             </Button>
@@ -211,15 +262,15 @@ const HandRecognition: React.FC = () => {
       <Button
         onClick={predictKey}
         disabled={!modelLoaded || isAnalyzing}
-        className="mt-4 px-6 sm:px-10 py-3 sm:py-4 text-lg sm:text-xl rounded-full shadow-lg bg-gradient-to-r from-green-500 to-blue-600 hover:from-teal-400 hover:to-indigo-500 text-white font-bold"
+        className="mt-6 px-8 py-4 text-xl rounded-full shadow-lg bg-gradient-to-r from-green-500 to-blue-600 hover:from-pink-500 hover:to-purple-500 text-white font-bold"
       >
         {isAnalyzing ? "🤔 Thinking..." : "🎯 Recognize Sign"}
       </Button>
 
       {/* Detected Key */}
       {detectedKey && (
-        <p className="mt-3 text-center text-xl sm:text-2xl font-extrabold text-indigo-200">
-          {flashColor === "rgba(0,255,0,0.2)" ? `🎉 Correct! I saw: ${detectedKey}` : `😅 That was: ${detectedKey}`}
+        <p className="mt-4 text-2xl font-bold text-pink-600">
+          I saw: {detectedKey}
         </p>
       )}
     </div>

@@ -37,14 +37,20 @@ export const MascotHeader = () => {
       </div>
       
       {/* Welcome Message - More Colorful */}
-      <div className="animate-bounce-in" style={{ animationDelay: "200ms" }}>
-        <h1 className="mb-3 text-5xl font-bold bg-gradient-rainbow bg-clip-text text-transparent animate-pulse-soft">
-          Smart Sign
-        </h1>
-        <p className="text-xl font-bold bg-gradient-accent bg-clip-text text-transparent">
-          Let's learn signs together! 🎉✨
-        </p>
-      </div>
+<div className="animate-bounce-in" style={{ animationDelay: "200ms" }}>
+  <h1 className="mb-3 text-5xl font-bold animate-pulse-soft">
+    <span className="bg-gradient-rainbow bg-clip-text text-transparent">
+      Smart Sign
+    </span>
+  </h1>
+  <p className="text-xl font-bold">
+    <span className="bg-gradient-accent bg-clip-text text-transparent inline-block">
+      Let's learn signs together! 
+    </span>
+     🎉✨
+  </p>
+</div>
+
     </div>
   );
 };

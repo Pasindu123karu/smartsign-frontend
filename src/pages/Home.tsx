@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Play, Trophy, Target, Star, Heart } from "lucide-react";
+import { Play, Trophy, Target, Star, Heart,BrainCircuit  } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -32,25 +32,25 @@ const Home = () => {
 
   const quickActions = [
     {
-      title: "Try AI Sign Recognition",
-      description: "Show me your signs with the camera!",
-      icon: <Play className="h-10 w-10 text-white" />,
-      gradient: "bg-gradient-primary",
-      onClick: () => navigate("/camera"),
-    },
-    {
       title: "Start Learning",
       description: "Begin your sign language journey!",
       icon: <Target className="h-10 w-10 text-white" />,
-      gradient: "bg-gradient-secondary",
+      gradient: "bg-gradient-accent",
       onClick: () => navigate("/learning"),
     },
     {
       title: "Watch Video Lessons",
       description: "Learn with fun video tutorials!",
       icon: <Play className="h-10 w-10 text-white rotate-0" style={{ transform: 'rotate(0deg)' }} />,
-      gradient: "bg-gradient-accent",
+      gradient: "bg-gradient-primary",
       onClick: () => navigate("/videos"),
+    },
+     {
+      title: "Try AI Sign Recognition",
+      description: "Show me your signs with the camera!",
+      icon: <BrainCircuit  className="h-10 w-10 text-white" />,
+      gradient: "bg-gradient-secondary",
+      onClick: () => navigate("/camera"),
     },
     {
       title: "View Progress",

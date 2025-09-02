@@ -1,47 +1,218 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { MascotHeader } from "@/components/MascotHeader";
 import { Card, CardContent } from "@/components/ui/card";
 
+// Import all 25 images
+import alldoneImg from "../../assets/signs/word/alldone.jpg";
+import dontImg from "../../assets/signs/word/dont.jpg";
+import eatImg from "../../assets/signs/word/eat.jpg";
+import friendsImg from "../../assets/signs/word/friends.jpg";
+import helloImg from "../../assets/signs/word/hello.jpg";
+import helpImg from "../../assets/signs/word/help.jpg";
+import hungryImg from "../../assets/signs/word/hungry.jpg";
+import likeImg from "../../assets/signs/word/like.jpg";
+import meImg from "../../assets/signs/word/me.jpg";
+import moreImg from "../../assets/signs/word/more.jpg";
+import noImg from "../../assets/signs/word/no.jpg";
+import playImg from "../../assets/signs/word/play.jpg";
+import pleaseImg from "../../assets/signs/word/please.jpg";
+import stopImg from "../../assets/signs/word/stop.jpg";
+import thankyouImg from "../../assets/signs/word/thankyou.jpg";
+import toiletImg from "../../assets/signs/word/toilet.jpg";
+import wantImg from "../../assets/signs/word/want.jpg";
+import waterImg from "../../assets/signs/word/water.jpg";
+import whatImg from "../../assets/signs/word/what.jpg";
+import whenImg from "../../assets/signs/word/when.jpg";
+import whereImg from "../../assets/signs/word/where.jpg";
+import whoImg from "../../assets/signs/word/who.jpg";
+import whyImg from "../../assets/signs/word/why.jpg";
+import yesImg from "../../assets/signs/word/yes.jpg";
+import youImg from "../../assets/signs/word/you.jpg";
+
+const words = [
+  { word: "alldone", img: alldoneImg },
+  { word: "dont", img: dontImg },
+  { word: "eat", img: eatImg },
+  { word: "friends", img: friendsImg },
+  { word: "hello", img: helloImg },
+  { word: "help", img: helpImg },
+  { word: "hungry", img: hungryImg },
+  { word: "like", img: likeImg },
+  { word: "me", img: meImg },
+  { word: "more", img: moreImg },
+  { word: "no", img: noImg },
+  { word: "play", img: playImg },
+  { word: "please", img: pleaseImg },
+  { word: "stop", img: stopImg },
+  { word: "thankyou", img: thankyouImg },
+  { word: "toilet", img: toiletImg },
+  { word: "want", img: wantImg },
+  { word: "water", img: waterImg },
+  { word: "what", img: whatImg },
+  { word: "when", img: whenImg },
+  { word: "where", img: whereImg },
+  { word: "who", img: whoImg },
+  { word: "why", img: whyImg },
+  { word: "yes", img: yesImg },
+  { word: "you", img: youImg },
+];
+
 export default function Match() {
   const navigate = useNavigate();
+  const [pairs, setPairs] = useState<typeof words>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedWord, setSelectedWord] = useState<string | null>(null);
+  const [matched, setMatched] = useState<string[]>([]);
+  const [wrong, setWrong] = useState<string[]>([]);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [wrongCount, setWrongCount] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     document.title = "Match Signs | Smart Sign";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Match signs to images - Smart Sign game mode");
+    const shuffled = [...words].sort(() => Math.random() - 0.5).slice(0, 5);
+    setPairs(shuffled);
   }, []);
 
+  useEffect(() => {
+    if (matched.length === pairs.length && pairs.length > 0) {
+      setGameOver(true);
+    }
+  }, [matched, pairs]);
+
+  const handleMatch = () => {
+    if (selectedImage && selectedWord) {
+      if (selectedImage === selectedWord) {
+        setMatched((prev) => [...prev, selectedImage]);
+        setCorrectCount((c) => c + 1);
+      } else {
+        setWrong((prev) => [...prev, selectedWord]);
+        setWrongCount((c) => c + 1);
+        setTimeout(() => {
+          setWrong((prev) => prev.filter((w) => w !== selectedWord));
+        }, 1000);
+      }
+      setSelectedImage(null);
+      setSelectedWord(null);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedImage && selectedWord) {
+      setTimeout(handleMatch, 400);
+    }
+  }, [selectedImage, selectedWord]);
+
   return (
-    <div className="min-h-screen bg-gradient-bg pb-24">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-100 to-indigo-300 pb-24">
       <div className="container mx-auto px-4 pt-6">
         <MascotHeader />
 
-        <div className="animate-bounce-in" style={{ animationDelay: "200ms" }}>
-          <h1 className="text-2xl font-bold text-foreground mb-2">Match Signs</h1>
-          <p className="text-muted-foreground">Drag or tap to match signs with the right images.</p>
+        {/* Title + score */}
+        <div className="text-center mb-6">
+          <h1 className="text-4xl font-bold text-indigo-800 mb-3 drop-shadow">
+            Match the Sign with the Word 🎯
+          </h1>
+          <p className="text-lg text-indigo-700 font-medium mb-2">
+            👆 Tap a picture, then tap the matching word!
+          </p>
+          <div className="text-lg font-semibold">
+            ✅ Correct:{" "}
+            <span className="text-green-600">{correctCount}</span> | ❌ Wrong:{" "}
+            <span className="text-red-600">{wrongCount}</span>
+          </div>
         </div>
 
-        <Card className="mt-6 shadow-card">
+        <Card className="shadow-2xl rounded-2xl border-2 border-indigo-200">
           <CardContent className="p-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[1,2,3,4,5,6].map((i) => (
-                <div key={i} className="rounded-2xl h-24 bg-muted flex items-center justify-center text-muted-foreground">
-                  Slot {i}
+            {!gameOver ? (
+              <>
+                {/* Images */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                  {pairs.map((item) => (
+                    <div
+                      key={item.word}
+                      className={`rounded-2xl p-3 border-4 cursor-pointer shadow-md transition-transform duration-200 ${
+                        matched.includes(item.word)
+                          ? "opacity-40 pointer-events-none border-green-400"
+                          : selectedImage === item.word
+                          ? "border-yellow-400 scale-105"
+                          : "border-gray-300 hover:scale-105"
+                      }`}
+                      onClick={() => setSelectedImage(item.word)}
+                    >
+                      <img
+                        src={item.img}
+                        alt={item.word}
+                        className="h-40 w-full object-contain rounded-xl bg-white shadow-inner"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-6 flex gap-3">
-              <Button variant="secondary" onClick={() => navigate(-1)}>Back</Button>
-              <Button variant="success" onClick={() => { /* coming soon */ }}>Start Matching (Coming soon)</Button>
+
+                {/* Words */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {pairs
+                    .map((item) => item.word)
+                    .sort(() => Math.random() - 0.5)
+                    .map((word) => (
+                      <Button
+                        key={word}
+                        className={`w-full text-lg font-bold py-4 rounded-xl shadow-md transition ${
+                          matched.includes(word)
+                            ? "bg-green-500 text-white pointer-events-none"
+                            : wrong.includes(word)
+                            ? "bg-red-500 text-white"
+                            : selectedWord === word
+                            ? "bg-yellow-300 text-black"
+                            : "bg-white text-indigo-700 hover:bg-indigo-100"
+                        }`}
+                        onClick={() => setSelectedWord(word)}
+                      >
+                        {word.toUpperCase()}
+                      </Button>
+                    ))}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-12">
+                <h2 className="text-4xl font-bold mb-4 text-indigo-800">
+                  🎉 Game Over! 🎉
+                </h2>
+                <p className="text-xl font-semibold mb-6">
+                  ✅ Correct:{" "}
+                  <span className="text-green-600">{correctCount}</span> | ❌
+                  Wrong: <span className="text-red-600">{wrongCount}</span>
+                </p>
+                <Button
+                  onClick={() => window.location.reload()}
+                  className="bg-indigo-600 text-white text-lg px-6 py-3 rounded-xl shadow-lg hover:bg-indigo-700"
+                >
+                  Play Again
+                </Button>
+              </div>
+            )}
+
+            <div className="mt-8 flex gap-3 justify-center">
+              <Button
+                variant="secondary"
+                onClick={() => navigate(-1)}
+                className="px-6 py-2 rounded-lg shadow-md"
+              >
+              Back
+              </Button>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <BottomNavigation activeTab="games" onTabChange={(tab) => navigate(tab === "games" ? "/" : "/")} />
+      <BottomNavigation
+        activeTab="games"
+        onTabChange={(tab) => navigate(tab === "games" ? "/" : "/")}
+      />
     </div>
   );
 }
