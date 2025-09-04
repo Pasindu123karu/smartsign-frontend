@@ -5,32 +5,33 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 import { MascotHeader } from "@/components/MascotHeader";
 import { Card, CardContent } from "@/components/ui/card";
 
-// Import all 25 images
-import alldoneImg from "../../assets/signs/word/alldone.jpg";
-import dontImg from "../../assets/signs/word/dont.jpg";
-import eatImg from "../../assets/signs/word/eat.jpg";
-import friendsImg from "../../assets/signs/word/friends.jpg";
-import helloImg from "../../assets/signs/word/hello.jpg";
-import helpImg from "../../assets/signs/word/help.jpg";
-import hungryImg from "../../assets/signs/word/hungry.jpg";
-import likeImg from "../../assets/signs/word/like.jpg";
-import meImg from "../../assets/signs/word/me.jpg";
-import moreImg from "../../assets/signs/word/more.jpg";
-import noImg from "../../assets/signs/word/no.jpg";
-import playImg from "../../assets/signs/word/play.jpg";
-import pleaseImg from "../../assets/signs/word/please.jpg";
-import stopImg from "../../assets/signs/word/stop.jpg";
-import thankyouImg from "../../assets/signs/word/thankyou.jpg";
-import toiletImg from "../../assets/signs/word/toilet.jpg";
-import wantImg from "../../assets/signs/word/want.jpg";
-import waterImg from "../../assets/signs/word/water.jpg";
-import whatImg from "../../assets/signs/word/what.jpg";
-import whenImg from "../../assets/signs/word/when.jpg";
-import whereImg from "../../assets/signs/word/where.jpg";
-import whoImg from "../../assets/signs/word/who.jpg";
-import whyImg from "../../assets/signs/word/why.jpg";
-import yesImg from "../../assets/signs/word/yes.jpg";
-import youImg from "../../assets/signs/word/you.jpg";
+// Define all 25 image paths
+const alldoneImg = "/assets/signs/word/alldone.jpg";
+const dontImg = "/assets/signs/word/dont.jpg";
+const eatImg = "/assets/signs/word/eat.jpg";
+const friendsImg = "/assets/signs/word/friends.jpg";
+const helloImg = "/assets/signs/word/hello.jpg";
+const helpImg = "/assets/signs/word/help.jpg";
+const hungryImg = "/assets/signs/word/hungry.jpg";
+const likeImg = "/assets/signs/word/like.jpg";
+const meImg = "/assets/signs/word/me.jpg";
+const moreImg = "/assets/signs/word/more.jpg";
+const noImg = "/assets/signs/word/no.jpg";
+const playImg = "/assets/signs/word/play.jpg";
+const pleaseImg = "/assets/signs/word/please.jpg";
+const stopImg = "/assets/signs/word/stop.jpg";
+const thankyouImg = "/assets/signs/word/thankyou.jpg";
+const toiletImg = "/assets/signs/word/toilet.jpg";
+const wantImg = "/assets/signs/word/want.jpg";
+const waterImg = "/assets/signs/word/water.jpg";
+const whatImg = "/assets/signs/word/what.jpg";
+const whenImg = "/assets/signs/word/when.jpg";
+const whereImg = "/assets/signs/word/where.jpg";
+const whoImg = "/assets/signs/word/who.jpg";
+const whyImg = "/assets/signs/word/why.jpg";
+const yesImg = "/assets/signs/word/yes.jpg";
+const youImg = "/assets/signs/word/you.jpg";
+
 
 const words = [
   { word: "alldone", img: alldoneImg },
