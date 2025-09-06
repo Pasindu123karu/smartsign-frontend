@@ -110,7 +110,7 @@ export default function Identify() {
                 <div className="rounded-2xl bg-muted h-48 w-48 flex items-center justify-center text-muted-foreground">
                   {currentLetter && (
                     <img
-                      src={`/public/assets/signs/alphabet/${currentLetter}.PNG`}
+                      src={`/public/assets/signs/alphabet/${currentLetter}.png`}
                       alt={`Sign ${currentLetter}`}
                       className="h-full object-contain"
                     />
