@@ -4,7 +4,7 @@ export interface AlphabetLetter {
   emoji: string;
   description: string;
   color: string;
-  image: string; // <-- add this
+  image: string;
 }
 
 export const alphabetData: AlphabetLetter[] = [
@@ -14,7 +14,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🍎",
     description: "A is for Apple.",
     color: "from-pink-500 to-red-500",
-    image: "/assets/signs/alphabet/a.PNG",
+    image: "/assets/signs/alphabet/a.png",
   },
   {
     letter: "B",
@@ -22,7 +22,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "⚽",
     description: "B is for Ball.",
     color: "from-blue-500 to-indigo-500",
-    image: "/assets/signs/alphabet/b.PNG",
+    image: "/assets/signs/alphabet/b.png",
   },
   {
     letter: "C",
@@ -30,7 +30,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐱",
     description: "C is for Cat.",
     color: "from-yellow-500 to-orange-500",
-    image: "/assets/signs/alphabet/c.PNG",
+    image: "/assets/signs/alphabet/c.png",
   },
   {
     letter: "D",
@@ -38,7 +38,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐶",
     description: "D is for Dog.",
     color: "from-green-500 to-emerald-500",
-    image: "/assets/signs/alphabet/d.PNG",
+    image: "/assets/signs/alphabet/d.png",
   },
   {
     letter: "E",
@@ -46,7 +46,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐘",
     description: "E is for Elephant.",
     color: "from-purple-500 to-pink-500",
-    image: "/assets/signs/alphabet/e.PNG",
+    image: "/assets/signs/alphabet/e.png",
   },
   {
     letter: "F",
@@ -54,7 +54,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐟",
     description: "F is for Fish.",
     color: "from-teal-500 to-cyan-500",
-    image: "/assets/signs/alphabet/f.PNG",
+    image: "/assets/signs/alphabet/f.png",
   },
   {
     letter: "G",
@@ -62,7 +62,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🍇",
     description: "G is for Grapes.",
     color: "from-indigo-500 to-purple-500",
-    image: "/assets/signs/alphabet/g.PNG",
+    image: "/assets/signs/alphabet/g.png",
   },
   {
     letter: "H",
@@ -70,7 +70,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🎩",
     description: "H is for Hat.",
     color: "from-red-500 to-yellow-500",
-    image: "/assets/signs/alphabet/h.PNG",
+    image: "/assets/signs/alphabet/h.png",
   },
   {
     letter: "I",
@@ -78,7 +78,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🍦",
     description: "I is for Ice Cream.",
     color: "from-blue-500 to-cyan-500",
-    image: "/assets/signs/alphabet/i.PNG",
+    image: "/assets/signs/alphabet/i.png",
   },
   {
     letter: "J",
@@ -86,7 +86,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🧃",
     description: "J is for Juice.",
     color: "from-orange-500 to-red-500",
-    image: "/assets/signs/alphabet/j.PNG",
+    image: "/assets/signs/alphabet/j.png",
   },
   {
     letter: "K",
@@ -94,7 +94,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🪁",
     description: "K is for Kite.",
     color: "from-pink-500 to-purple-500",
-    image: "/assets/signs/alphabet/k.PNG",
+    image: "/assets/signs/alphabet/k.png",
   },
   {
     letter: "L",
@@ -102,7 +102,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🦁",
     description: "L is for Lion.",
     color: "from-yellow-500 to-amber-500",
-    image: "/assets/signs/alphabet/l.PNG",
+    image: "/assets/signs/alphabet/l.png",
   },
   {
     letter: "M",
@@ -110,7 +110,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐵",
     description: "M is for Monkey.",
     color: "from-green-500 to-lime-500",
-    image: "/assets/signs/alphabet/m.PNG",
+    image: "/assets/signs/alphabet/m.png",
   },
   {
     letter: "N",
@@ -118,7 +118,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐦",
     description: "N is for Nest.",
     color: "from-teal-500 to-green-500",
-    image: "/assets/signs/alphabet/n.PNG",
+    image: "/assets/signs/alphabet/n.png",
   },
   {
     letter: "O",
@@ -126,7 +126,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🍊",
     description: "O is for Orange.",
     color: "from-orange-500 to-yellow-500",
-    image: "/assets/signs/alphabet/o.PNG",
+    image: "/assets/signs/alphabet/o.png",
   },
   {
     letter: "P",
@@ -134,7 +134,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐼",
     description: "P is for Panda.",
     color: "from-gray-500 to-black",
-    image: "/assets/signs/alphabet/p.PNG",
+    image: "/assets/signs/alphabet/p.png",
   },
   {
     letter: "Q",
@@ -142,7 +142,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "👑",
     description: "Q is for Queen.",
     color: "from-purple-500 to-indigo-500",
-    image: "/assets/signs/alphabet/q.PNG",
+    image: "/assets/signs/alphabet/q.png",
   },
   {
     letter: "R",
@@ -150,7 +150,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🌈",
     description: "R is for Rainbow.",
     color: "from-red-500 to-purple-500",
-    image: "/assets/signs/alphabet/r.PNG",
+    image: "/assets/signs/alphabet/r.png",
   },
   {
     letter: "S",
@@ -158,7 +158,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "☀️",
     description: "S is for Sun.",
     color: "from-yellow-500 to-orange-500",
-    image: "/assets/signs/alphabet/s.PNG",
+    image: "/assets/signs/alphabet/s.png",
   },
   {
     letter: "T",
@@ -166,7 +166,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐯",
     description: "T is for Tiger.",
     color: "from-orange-500 to-amber-500",
-    image: "/assets/signs/alphabet/t.PNG",
+    image: "/assets/signs/alphabet/t.png",
   },
   {
     letter: "U",
@@ -174,7 +174,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "☂️",
     description: "U is for Umbrella.",
     color: "from-blue-500 to-indigo-500",
-    image: "/assets/signs/alphabet/u.PNG",
+    image: "/assets/signs/alphabet/u.png",
   },
   {
     letter: "V",
@@ -182,7 +182,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🎻",
     description: "V is for Violin.",
     color: "from-red-500 to-pink-500",
-    image: "/assets/signs/alphabet/v.PNG",
+    image: "/assets/signs/alphabet/v.png",
   },
   {
     letter: "W",
@@ -190,7 +190,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐋",
     description: "W is for Whale.",
     color: "from-cyan-500 to-blue-500",
-    image: "/assets/signs/alphabet/w.PNG",
+    image: "/assets/signs/alphabet/w.png",
   },
   {
     letter: "X",
@@ -198,7 +198,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🎶",
     description: "X is for Xylophone.",
     color: "from-purple-500 to-pink-500",
-    image: "/assets/signs/alphabet/x.PNG",
+    image: "/assets/signs/alphabet/x.png",
   },
   {
     letter: "Y",
@@ -206,7 +206,7 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🐂",
     description: "Y is for Yak.",
     color: "from-green-500 to-teal-500",
-    image: "/assets/signs/alphabet/y.PNG",
+    image: "/assets/signs/alphabet/y.png",
   },
   {
     letter: "Z",
@@ -214,6 +214,6 @@ export const alphabetData: AlphabetLetter[] = [
     emoji: "🦓",
     description: "Z is for Zebra.",
     color: "from-black to-gray-500",
-    image: "/assets/signs/alphabet/z.PNG",
+    image: "/assets/signs/alphabet/z.png",
   },
 ];
