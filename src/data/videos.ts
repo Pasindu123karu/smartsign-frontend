@@ -21,7 +21,7 @@ export const videosData: VideoData[] = [
     title: 'Letter A',
     description: 'Learn how to sign the letter A',
     category: 'letters',
-    mainVideoPath: '/assets/videos/asl-alphabet.mp4',
+    mainVideoPath: '/assets/videos/Asl-Alphabet.webm',
     thumbnail: '/assets/thumbnails/letter-a.jpg',
     duration: '0:16',
     difficulty: 'easy',
