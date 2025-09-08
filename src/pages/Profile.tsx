@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";  // ✅ Import useNavigate
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { MascotHeader } from "@/components/MascotHeader";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Star, Trophy, Heart, Award, Target, Calendar } from "lucide-react";
+import { Star, Trophy, Heart, Award, Target, Calendar, LogOut } from "lucide-react"; // ✅ Added LogOut icon
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -12,6 +13,8 @@ const Profile = () => {
   const [totalStars] = useState(42);
   const [streakDays] = useState(7);
   const [gamesPlayed] = useState(15);
+
+  const navigate = useNavigate(); // ✅ Hook for navigation
 
   const badges = [
     { id: 1, name: "First Sign!", icon: "👋", earned: true },
@@ -31,10 +34,17 @@ const Profile = () => {
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
     if (tabId === "home") {
-      window.location.href = "/home";
+      navigate("/home");
     } else if (tabId === "games") {
-      window.location.href = "/games";
+      navigate("/games");
     }
+  };
+
+  const handleLogout = () => {
+    // clear session/localstorage if needed
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/login"); // ✅ Go to login page
   };
 
   return (
@@ -130,6 +140,18 @@ const Profile = () => {
             </p>
           </div>
         </div>
+
+      {/* ✅ Logout Button */}
+<div className="text-center mt-8 mb-8">   {/* added mb-8 here */}
+  <button
+    onClick={handleLogout}
+    className="flex items-center justify-center mx-auto space-x-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl shadow-md transition"
+  >
+    <LogOut className="h-5 w-5" />
+    <span className="font-semibold">Logout</span>
+  </button>
+</div>
+
       </div>
 
       <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
