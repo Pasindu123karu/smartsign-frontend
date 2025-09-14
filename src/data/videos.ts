@@ -21,14 +21,12 @@ export const videosData: VideoData[] = [
     title: 'Letter A',
     description: 'Learn how to sign the letter A',
     category: 'letters',
-    mainVideoPath: 'https://player.vimeo.com/video/1118481633',
+    mainVideoPath: '/assets/videos/a.mp4', // separate video for A
     thumbnail: '/assets/thumbnails/letter-a.jpg',
     duration: '0:16',
     difficulty: 'easy',
     color: 'from-red-400 to-pink-500',
-    emoji: '🍎',
-    startTime: 65,
-    endTime: 80
+    emoji: '🍎'
   },
   // B
   {
