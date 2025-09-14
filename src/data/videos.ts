@@ -21,7 +21,7 @@ export const videosData: VideoData[] = [
     title: 'Letter A',
     description: 'Learn how to sign the letter A',
     category: 'letters',
-    mainVideoPath: '/assets/videos/Asl-Alphabet.webm',
+    mainVideoPath: 'https://player.vimeo.com/video/1118481633',
     thumbnail: '/assets/thumbnails/letter-a.jpg',
     duration: '0:16',
     difficulty: 'easy',
