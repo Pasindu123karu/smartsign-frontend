@@ -87,17 +87,41 @@ const Videos = () => {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-card rounded-3xl p-2 shadow-card">
-            <TabsTrigger value="letters" className="rounded-2xl flex items-center gap-2 text-xs sm:text-sm font-semibold py-2 sm:py-3">
-              <Type className="h-3 w-3 sm:h-4 sm:w-4" /> Letters
-            </TabsTrigger>
-            <TabsTrigger value="words" className="rounded-2xl flex items-center gap-2 text-xs sm:text-sm font-semibold py-2 sm:py-3">
-              <BookOpen className="h-3 w-3 sm:h-4 sm:w-4" /> Words
-            </TabsTrigger>
-            <TabsTrigger value="phrases" className="rounded-2xl flex items-center gap-2 text-xs sm:text-sm font-semibold py-2 sm:py-3">
-              <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4" /> Phrases
-            </TabsTrigger>
-          </TabsList>
+          <TabsList className="flex justify-center gap-4 bg-card rounded-3xl p-2 shadow-card mb-6">
+  <TabsTrigger
+    value="letters"
+    className="flex-1 flex items-center justify-center gap-2 text-sm sm:text-lg font-semibold py-2 sm:py-3 px-4 sm:px-6
+               rounded-2xl bg-card text-foreground
+               data-[state=active]:bg-gradient-primary data-[state=active]:text-white
+               data-[state=active]:shadow-lg
+               transition-all duration-300 hover:bg-gray-100 hover:text-foreground hover:shadow-md"
+  >
+    <Type className="h-4 w-4 sm:h-5 sm:w-5" /> Letters
+  </TabsTrigger>
+
+  <TabsTrigger
+    value="words"
+    className="flex-1 flex items-center justify-center gap-2 text-sm sm:text-lg font-semibold py-2 sm:py-3 px-4 sm:px-6
+               rounded-2xl bg-card text-foreground
+               data-[state=active]:bg-gradient-secondary data-[state=active]:text-white
+               data-[state=active]:shadow-lg
+               transition-all duration-300 hover:bg-gray-100 hover:text-foreground hover:shadow-md"
+  >
+    <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" /> Words
+  </TabsTrigger>
+
+  <TabsTrigger
+    value="phrases"
+    className="flex-1 flex items-center justify-center gap-2 text-sm sm:text-lg font-semibold py-2 sm:py-3 px-4 sm:px-6
+               rounded-2xl bg-card text-foreground
+               data-[state=active]:bg-gradient-accent data-[state=active]:text-white
+               data-[state=active]:shadow-lg
+               transition-all duration-300 hover:bg-gray-100 hover:text-foreground hover:shadow-md"
+  >
+    <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" /> Phrases
+  </TabsTrigger>
+</TabsList>
+
 
           {["letters", "words", "phrases"].map(tab => (
             <TabsContent key={tab} value={tab} className="space-y-4 sm:space-y-6 mt-6 sm:mt-8">
