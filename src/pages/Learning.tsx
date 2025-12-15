@@ -160,11 +160,11 @@ const Learning = () => {
                         </div>
                       )}
                       <Button
-                        onClick={() => speak(letter.word)}
+                        onClick={() => speak(letter.description)}
                         className="bg-white/30 hover:bg-white/40 text-white border-white/30 rounded-full px-8 py-3 text-lg font-semibold transition-all duration-300 hover:scale-105"
                         size="lg"
                       >
-                        <Volume2 className="mr-3 h-6 w-6" /> Say "{letter.word}"
+                        <Volume2 className="mr-3 h-6 w-6" /> Say "{letter.description}"
                       </Button>
                     </div>
                   </CarouselItem>
